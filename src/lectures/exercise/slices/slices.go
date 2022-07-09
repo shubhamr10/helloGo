@@ -18,5 +18,24 @@ import "fmt"
 
 type Part string
 
+func printParts(title string, slice []Part) {
+	fmt.Println()
+	fmt.Println("---", title, "---")
+	for i := 0; i < len(slice); i++ {
+		part := slice[i]
+		fmt.Println(part)
+	}
+}
+
 func main() {
+	parts := []Part{"Engine", "Chasis", "Windscreen"}
+
+	// parts := make([]Part, 3)
+	printParts("Assembly 1", parts)
+
+	parts = append(parts, "Helmet", "Side Mirror")
+	printParts("Assembly 2", parts)
+
+	parts = parts[3:]
+	printParts("Assembly 3", parts)
 }
