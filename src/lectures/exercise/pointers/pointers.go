@@ -18,6 +18,36 @@ package main
 
 import "fmt"
 
+type Items struct {
+	name string
+	tag  bool
+}
+
+func tagsChange(tag *bool) {
+	*tag = !*tag
+}
+
+func checkout(items []Items) {
+	fmt.Println("checking out...")
+	for i := 0; i < len(items); i++ {
+		tagsChange(&items[i].tag)
+	}
+	fmt.Println(items, 'a')
+}
+
 func main() {
+	items := []Items{
+		{name: "Bread", tag: true},
+		{name: "belt", tag: true},
+		{name: "bottle", tag: true},
+		{name: "tape", tag: true},
+	}
+
+	fmt.Println(items)
+	tagsChange(&items[2].tag)
+	fmt.Println(items)
+
+	checkout(items)
+	fmt.Println(items)
 
 }
