@@ -18,8 +18,40 @@
 
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+
+	lines := make([]string, 0)
+	numOfCommands := 0
+
+	for scanner.Scan() {
+		inputText := scanner.Text()
+		fmt.Println(inputText)
+		numOfCommands += 1
+		if inputText == "hello" || inputText == "bye" {
+			fmt.Printf("Message is :%v", inputText)
+		}
+		if inputText == "Q" || inputText == "q" {
+			lines = append(lines, inputText)
+			break
+		}
+		if inputText == "" || inputText == "\n" {
+			continue
+		}
+		lines = append(lines, inputText)
+	}
+
+	for scanner.Err() != nil {
+		fmt.Println("Error while reading", scanner.Err())
+	}
+
+	fmt.Printf("Line counts %v \n", len(lines))
+	fmt.Printf("Commands counts %v \n", numOfCommands)
 
 }
